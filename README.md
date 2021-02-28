@@ -1,6 +1,6 @@
 # Not-so-lonely-space
 
-![UwU](https://github.com/nativerv/not-so-lonely-space/blob/master/repo-banner.jpg?raw=true)
+![UwU](https://github.com/nativerv/not-so-lonely-space/blob/feature/initial-project-setup/repo-banner.jpg?raw=true)
 
 A game without mean and purpose ~
 
