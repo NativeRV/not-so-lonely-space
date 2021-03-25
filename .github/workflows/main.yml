@@ -31,7 +31,4 @@ jobs:
           env:
             UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           with:
-            targetPlatform:
-              - Android # Build an Android player.
-              - StandaloneWindows64 # Build a Windows 64-bit standalone.
-              - StandaloneLinux64 # Build a Linux 64-bit standalone.
+            targetPlatform: StandaloneWindows64 # Build a Windows 64-bit standalone.

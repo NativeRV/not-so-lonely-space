@@ -1,6 +1,6 @@
 name: Acquire activation file 🔑
-on: [push]
-jobs:
+on: [create]
+jos:
   activation:
     name: Request manual activation file 🔑
     runs-on: ubuntu-latest
