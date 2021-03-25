@@ -1,0 +1,38 @@
+name: CI 😎
+on: [push, pull_request]
+jobs:
+  build:
+    name: Build the thing ✨
+    runs-on: ubuntu-latest
+    container: gableroux/unity3d:2018.2.21f1
+    steps:
+         # Checkout
+        - name: Checkout repository
+          uses: actions/checkout@v2
+          with:
+            lfs: true
+  
+        # Cache
+        - uses: actions/cache@v2
+          with:
+            path: Library
+            key: Library
+  
+        # Test
+        - name: Run tests
+          uses: game-ci/unity-test-runner@v2
+          env:
+            UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          with:
+            githubToken: ${{ secrets.GITHUB_TOKEN }}
+        
+        # Build
+        - name: Build project
+          uses: game-ci/unity-builder@v2
+          env:
+            UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          with:
+            targetPlatform:
+              - Android # Build an Android player.
+              - StandaloneWindows64 # Build a Windows 64-bit standalone.
+              - StandaloneLinux64 # Build a Linux 64-bit standalone.
