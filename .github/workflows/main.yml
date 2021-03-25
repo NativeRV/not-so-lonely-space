@@ -4,7 +4,6 @@ jobs:
   build:
     name: Build the thing ✨
     runs-on: ubuntu-latest
-    container: gableroux/unity3d:2018.2.21f1
     steps:
          # Checkout
         - name: Checkout repository
