@@ -38,6 +38,7 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: StandaloneWindows64 # Build a Windows 64-bit standalone.
+          allowDirtyBuild: true
           versioning: Semantic
 
       - name: Output artifact
