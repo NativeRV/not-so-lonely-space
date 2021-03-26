@@ -3,11 +3,9 @@ on:
   push:
     branches:
       - master
-      - develop
   pull_request:
     branches:
       - master
-      - develop
 jobs:
   build:
     name: Build the thing ✨
@@ -40,6 +38,7 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: StandaloneWindows64 # Build a Windows 64-bit standalone.
+          versioning: Semantic
 
       - name: Output artifact
         uses: actions/upload-artifact@v2
