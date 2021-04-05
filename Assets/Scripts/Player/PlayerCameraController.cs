@@ -16,22 +16,29 @@ namespace NSLS.Game.Player
   /// - ротация модельки игрока влево и вправо (но не вверх/вниз);
   /// @Credit: https://www.youtube.com/watch?v=B4vNWUTQues
   /// </summary>
+  // [RequireComponent(typeof(GameObject))]
   public class PlayerCameraController : NetworkBehaviour
   {
     [Header("Camera")]
     [SerializeField]
-    private Vector2 maxFollowOffset = new Vector2(-1f, 6f);
+    private Vector2 mouseSensitivity = new Vector2(4f, 4f);
 
     [SerializeField]
-    private Vector2 cameraVelocity = new Vector2(4f, 0.25f);
+    private GameObject cameraMountPoint = null;
 
+    [Header("Player root GameObject")]
     [SerializeField]
     private Transform playerTransform = null;
 
+    [Header("Character Controller")]
     [SerializeField]
-    private CinemachineVirtualCamera virtualCamera = null;
+    private CharacterController characterController = null;
 
-    private CinemachineTransposer transposer;
+    private Transform MainCameraTransform
+    {
+      get => Camera.main.gameObject.transform;
+    }
+
     private Controls controls;
     private Controls Controls
     {
@@ -47,9 +54,9 @@ namespace NSLS.Game.Player
 
     public override void OnStartAuthority()
     {
-      transposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
-
-      virtualCamera.gameObject.SetActive(true);
+      MainCameraTransform.parent = cameraMountPoint.transform;  //Make the camera a child of the mount point
+      MainCameraTransform.position = cameraMountPoint.transform.position;  //Set position/rotation same as the mount point
+      MainCameraTransform.rotation = cameraMountPoint.transform.rotation;
 
       // Enable updates for PlayerCameraController
       enabled = true;
@@ -67,6 +74,7 @@ namespace NSLS.Game.Player
 
       // TODO: сделать менюху на эскейп, в которой курсор будет врубаться
       Cursor.visible = false;
+      Cursor.lockState = CursorLockMode.Locked;
     }
 
     [ClientCallback]
@@ -75,6 +83,7 @@ namespace NSLS.Game.Player
       Controls.Disable();
       // TODO: сделать менюху на эскейп, в которой курсор будет врубаться
       Cursor.visible = true;
+      Cursor.lockState = CursorLockMode.None;
     }
 
     // Метод рассчитывающий новую позицию и ротэйтящий камеру в зависимости
@@ -84,19 +93,15 @@ namespace NSLS.Game.Player
       // Коэффициент погрешности относительно FPS
       // Для высокого FPS - меньше, для низкого - больше
       // чтобы для любого FPS игра работала одинаково
-      float deltaTime = Time.deltaTime;
+      float deltaTime = Time.smoothDeltaTime;
 
-      // Куча математики, которую я скопипастил
-      float followOffsetY = Mathf.Clamp(
-        transposer.m_FollowOffset.y - (input.y * cameraVelocity.y * deltaTime),
-        maxFollowOffset.x, maxFollowOffset.y
-      );
+      // Ограничеваем вертикальный поворот ногами и небом и ревёрсим его чтобы было по-человечески
+      var rotationAroundX = -input.y * mouseSensitivity.y * deltaTime;
+      var rotationAroundY = input.x * mouseSensitivity.x * deltaTime;
 
-      // Крутим камеру вниз/вверх
-      transposer.m_FollowOffset.y = followOffsetY;
+      cameraMountPoint.transform.Rotate(rotationAroundX, 0f, 0f);
 
-      // Крутим игрока влево/вправо
-      playerTransform.Rotate(0f, input.x * cameraVelocity.x * deltaTime, 0f);
+      playerTransform.Rotate(0f, rotationAroundY, 0f);
     }
 
     // Start is called before the first frame update
