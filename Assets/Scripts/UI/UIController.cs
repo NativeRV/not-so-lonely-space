@@ -17,6 +17,7 @@ namespace NSLS.Game.UI
       else
       {
         StatusLabels();
+        StopButtons();
         //SubmitNewPosition();
       }
 
@@ -30,6 +31,16 @@ namespace NSLS.Game.UI
       if (GUILayout.Button("Server")) NetworkManager.Singleton.StartServer();
     }
 
+    static void StopButtons()
+    {
+      var mode = NetworkManager.Singleton.IsHost ?
+          "Host" : NetworkManager.Singleton.IsServer ? "Server" : "Client";
+
+      if (NetworkManager.Singleton.IsHost && GUILayout.Button("Stop server")) NetworkManager.Singleton.StopServer();
+      if (!NetworkManager.Singleton.IsHost && GUILayout.Button("Leave")) NetworkManager.Singleton.StopClient();
+      // FIXME: don't do UI if only running server
+
+    }
     static void StatusLabels()
     {
       var mode = NetworkManager.Singleton.IsHost ?

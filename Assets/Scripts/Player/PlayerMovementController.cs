@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
+using MLAPI;
 using UnityEngine.InputSystem;
 
 namespace NSLS.Game.Input
@@ -45,9 +45,9 @@ namespace NSLS.Game.Input
       }
     }
 
-    public override void OnStartAuthority()
+    public void Start()
     {
-      enabled = true;
+      // enabled = true;
 
       Controls.Player.PlayerHorizontalMovement.performed += (ctx) => SetMovement(ctx.ReadValue<Vector2>());
       Controls.Player.PlayerHorizontalMovement.canceled += (ctx) => ResetMovement();
@@ -56,37 +56,31 @@ namespace NSLS.Game.Input
       Controls.Player.PlayerJump.canceled += (ctx) => ResetJumping();
     }
 
-    [ClientCallback]
     private void OnEnable()
     {
       Controls.Enable();
     }
 
-    [ClientCallback]
     private void OnDisable()
     {
       Controls.Disable();
     }
 
-    [Client]
     void SetMovement(Vector2 inputVector)
     {
       currentHorizontalInput = inputVector;
     }
 
-    [Client]
     void ResetMovement()
     {
       currentHorizontalInput = Vector2.zero;
     }
 
-    [Client]
     void SetJumping(bool inputBoolean)
     {
       currentJumpInput = true;
     }
 
-    [Client]
     void ResetJumping()
     {
       currentJumpInput = false;
@@ -95,15 +89,8 @@ namespace NSLS.Game.Input
 
     void UpdateMovement()
     {
-      // if (!isLocalPlayer) return;
+      if (!IsLocalPlayer) return;
 
-      // // float h = UnityEngine.Input.GetAxis("Horizontal");
-      // // float v = UnityEngine.Input.GetAxis("Vertical");
-
-      // var inputVector = horizontalMovement.ReadValue<Vector2>();
-
-      // Vector3 dir = new Vector3(inputVector.y, 0, inputVector.x);
-      // transform.position += dir.normalized * (Time.deltaTime * moveSpeed);
 
       Vector3 sideAxis = transform.right;
       Vector3 forwardAxis = transform.forward;
@@ -113,9 +100,6 @@ namespace NSLS.Game.Input
 
       Vector3 movement = sideAxis.normalized * currentHorizontalInput.x +
                         forwardAxis.normalized * currentHorizontalInput.y;
-
-      // transform.position += movement * moveSpeed * Time.deltaTime;
-      // transform.position += verticalVelocity;
 
       var horizontalVelocity = movement * moveSpeed * Time.deltaTime;
 
@@ -155,7 +139,6 @@ namespace NSLS.Game.Input
       // characterController.Move(Vector3.up * 10);
     }
 
-    [ClientCallback]
     void Update()
     {
       UpdateGrounded();
