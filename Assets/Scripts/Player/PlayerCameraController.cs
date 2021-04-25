@@ -34,6 +34,9 @@ namespace NSLS.Game.Player
     [SerializeField]
     private CharacterController characterController = null;
 
+    private float cameraRotationAroundX = 0f;
+    private float cameraRotationAroundY = 0f;
+
     private Transform MainCameraTransform
     {
       get => Camera.main.gameObject.transform;
@@ -100,8 +103,17 @@ namespace NSLS.Game.Player
       var rotationAroundY = input.x * mouseSensitivity.x * deltaTime;
 
       cameraMountPoint.transform.Rotate(rotationAroundX, 0f, 0f);
+      // cameraMountPoint.transform.rotation.x = Mathf.Clamp(cameraMountPoint.transform.rotation.x, -90f, 90f);
 
       playerTransform.Rotate(0f, rotationAroundY, 0f);
+
+      // cameraRotationAroundX += -input.y * mouseSensitivity.y * deltaTime;
+      // cameraRotationAroundY += input.x * mouseSensitivity.x * deltaTime;
+
+      // cameraRotationAroundX = Mathf.Clamp(cameraRotationAroundX, -90f, 90f);
+
+      // cameraMountPoint.transform.rotation = Quaternion.Euler(cameraRotationAroundX, 0f, 0f);
+      // playerTransform.rotation = Quaternion.Euler(0f, cameraRotationAroundY, 0f)
     }
 
     // Start is called before the first frame update

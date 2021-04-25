@@ -14,41 +14,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "PlayerMoveForward",
-                    "type": "Button",
-                    "id": "c725bd58-1529-40c9-ada2-94d87c20c268",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "PlayerMoveBackwards",
-                    "type": "Button",
-                    "id": "9b3ecf34-c2aa-428a-ad24-1e9d7848c448",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "PlayerStrafeLeft",
-                    "type": "Button",
-                    "id": "96fc2174-2c9d-44e9-bbba-338ec522b345",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "PlayerStrafeRight",
-                    "type": "Button",
-                    "id": "08d6a725-be36-423a-8854-a4856057e346",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "PlayerHorizontalMovement",
                     "type": "Button",
                     "id": "d26f3369-22cc-40d8-ac73-6b5ae1d5dc37",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "PlayerJump",
+                    "type": "Button",
+                    "id": "21166a95-3d25-4ee5-9e3b-9d6d2ec88b46",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -63,50 +39,6 @@
                     "processors": "",
                     "groups": "Keyboard & Mouse",
                     "action": "PlayerCameraLook",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d78ddb9c-6785-4c02-a47d-dfe46f549d9b",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard & Mouse",
-                    "action": "PlayerMoveForward",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "78b36a73-32dd-4b81-ba97-2deec8b9bdad",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard & Mouse",
-                    "action": "PlayerMoveBackwards",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "66f094ab-096a-4d36-b915-2fe7852bbc69",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard & Mouse",
-                    "action": "PlayerStrafeLeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "19060d3d-3c67-4839-8d3e-486929b8c20f",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard & Mouse",
-                    "action": "PlayerStrafeRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -164,6 +96,17 @@
                     "action": "PlayerHorizontalMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "f50a8ea2-4d11-4bd1-83db-1c3aebdcb27e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "PlayerJump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

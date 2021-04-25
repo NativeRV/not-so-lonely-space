@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &188503362356029901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1122180699752732797}
+  m_Layer: 0
+  m_Name: PlayerGroundPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1122180699752732797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188503362356029901}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3940825635195478822}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1681259390253631019
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,6 +404,7 @@ GameObject:
   - component: {fileID: 234242487131175106}
   - component: {fileID: 1902157053817813642}
   - component: {fileID: 7513482474222603433}
+  - component: {fileID: 7372443507023269816}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -395,6 +426,7 @@ Transform:
   - {fileID: 5801891461905278130}
   - {fileID: 2757581592812618137}
   - {fileID: 1980293921369708342}
+  - {fileID: 1122180699752732797}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -447,13 +479,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 5.97
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!114 &1902157053817813642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,7 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  mouseSensitivity: {x: 30, y: 30}
+  mouseSensitivity: {x: 100, y: 100}
   cameraMountPoint: {fileID: 8902353436908813076}
   playerTransform: {fileID: 3940825635195478822}
   characterController: {fileID: 234242487131175106}
@@ -487,7 +519,26 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   moveSpeed: 5
+  jumpHeight: 13.5
+  gravity: -9.81
   characterController: {fileID: 234242487131175106}
+  playerGroundMask:
+    serializedVersion: 2
+    m_Bits: 1
+  playerGroundPoint: {fileID: 1122180699752732797}
+--- !u!65 &7372443507023269816
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7684693781925140913}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 4, y: 4, z: 0}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!1 &8902353436908813076
 GameObject:
   m_ObjectHideFlags: 0

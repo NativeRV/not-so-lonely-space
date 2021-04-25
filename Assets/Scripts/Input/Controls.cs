@@ -29,41 +29,17 @@ namespace NSLS.Game.Input
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""PlayerMoveForward"",
-                    ""type"": ""Button"",
-                    ""id"": ""c725bd58-1529-40c9-ada2-94d87c20c268"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""PlayerMoveBackwards"",
-                    ""type"": ""Button"",
-                    ""id"": ""9b3ecf34-c2aa-428a-ad24-1e9d7848c448"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""PlayerStrafeLeft"",
-                    ""type"": ""Button"",
-                    ""id"": ""96fc2174-2c9d-44e9-bbba-338ec522b345"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""PlayerStrafeRight"",
-                    ""type"": ""Button"",
-                    ""id"": ""08d6a725-be36-423a-8854-a4856057e346"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""PlayerHorizontalMovement"",
                     ""type"": ""Button"",
                     ""id"": ""d26f3369-22cc-40d8-ac73-6b5ae1d5dc37"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""PlayerJump"",
+                    ""type"": ""Button"",
+                    ""id"": ""21166a95-3d25-4ee5-9e3b-9d6d2ec88b46"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -78,50 +54,6 @@ namespace NSLS.Game.Input
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
                     ""action"": ""PlayerCameraLook"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d78ddb9c-6785-4c02-a47d-dfe46f549d9b"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""PlayerMoveForward"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""78b36a73-32dd-4b81-ba97-2deec8b9bdad"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""PlayerMoveBackwards"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""66f094ab-096a-4d36-b915-2fe7852bbc69"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""PlayerStrafeLeft"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""19060d3d-3c67-4839-8d3e-486929b8c20f"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""PlayerStrafeRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -179,6 +111,17 @@ namespace NSLS.Game.Input
                     ""action"": ""PlayerHorizontalMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f50a8ea2-4d11-4bd1-83db-1c3aebdcb27e"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""PlayerJump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -205,11 +148,8 @@ namespace NSLS.Game.Input
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_PlayerCameraLook = m_Player.FindAction("PlayerCameraLook", throwIfNotFound: true);
-            m_Player_PlayerMoveForward = m_Player.FindAction("PlayerMoveForward", throwIfNotFound: true);
-            m_Player_PlayerMoveBackwards = m_Player.FindAction("PlayerMoveBackwards", throwIfNotFound: true);
-            m_Player_PlayerStrafeLeft = m_Player.FindAction("PlayerStrafeLeft", throwIfNotFound: true);
-            m_Player_PlayerStrafeRight = m_Player.FindAction("PlayerStrafeRight", throwIfNotFound: true);
             m_Player_PlayerHorizontalMovement = m_Player.FindAction("PlayerHorizontalMovement", throwIfNotFound: true);
+            m_Player_PlayerJump = m_Player.FindAction("PlayerJump", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -260,21 +200,15 @@ namespace NSLS.Game.Input
         private readonly InputActionMap m_Player;
         private IPlayerActions m_PlayerActionsCallbackInterface;
         private readonly InputAction m_Player_PlayerCameraLook;
-        private readonly InputAction m_Player_PlayerMoveForward;
-        private readonly InputAction m_Player_PlayerMoveBackwards;
-        private readonly InputAction m_Player_PlayerStrafeLeft;
-        private readonly InputAction m_Player_PlayerStrafeRight;
         private readonly InputAction m_Player_PlayerHorizontalMovement;
+        private readonly InputAction m_Player_PlayerJump;
         public struct PlayerActions
         {
             private @Controls m_Wrapper;
             public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
             public InputAction @PlayerCameraLook => m_Wrapper.m_Player_PlayerCameraLook;
-            public InputAction @PlayerMoveForward => m_Wrapper.m_Player_PlayerMoveForward;
-            public InputAction @PlayerMoveBackwards => m_Wrapper.m_Player_PlayerMoveBackwards;
-            public InputAction @PlayerStrafeLeft => m_Wrapper.m_Player_PlayerStrafeLeft;
-            public InputAction @PlayerStrafeRight => m_Wrapper.m_Player_PlayerStrafeRight;
             public InputAction @PlayerHorizontalMovement => m_Wrapper.m_Player_PlayerHorizontalMovement;
+            public InputAction @PlayerJump => m_Wrapper.m_Player_PlayerJump;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -287,21 +221,12 @@ namespace NSLS.Game.Input
                     @PlayerCameraLook.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerCameraLook;
                     @PlayerCameraLook.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerCameraLook;
                     @PlayerCameraLook.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerCameraLook;
-                    @PlayerMoveForward.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerMoveForward;
-                    @PlayerMoveForward.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerMoveForward;
-                    @PlayerMoveForward.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerMoveForward;
-                    @PlayerMoveBackwards.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerMoveBackwards;
-                    @PlayerMoveBackwards.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerMoveBackwards;
-                    @PlayerMoveBackwards.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerMoveBackwards;
-                    @PlayerStrafeLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerStrafeLeft;
-                    @PlayerStrafeLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerStrafeLeft;
-                    @PlayerStrafeLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerStrafeLeft;
-                    @PlayerStrafeRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerStrafeRight;
-                    @PlayerStrafeRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerStrafeRight;
-                    @PlayerStrafeRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerStrafeRight;
                     @PlayerHorizontalMovement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerHorizontalMovement;
                     @PlayerHorizontalMovement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerHorizontalMovement;
                     @PlayerHorizontalMovement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerHorizontalMovement;
+                    @PlayerJump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerJump;
+                    @PlayerJump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerJump;
+                    @PlayerJump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerJump;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -309,21 +234,12 @@ namespace NSLS.Game.Input
                     @PlayerCameraLook.started += instance.OnPlayerCameraLook;
                     @PlayerCameraLook.performed += instance.OnPlayerCameraLook;
                     @PlayerCameraLook.canceled += instance.OnPlayerCameraLook;
-                    @PlayerMoveForward.started += instance.OnPlayerMoveForward;
-                    @PlayerMoveForward.performed += instance.OnPlayerMoveForward;
-                    @PlayerMoveForward.canceled += instance.OnPlayerMoveForward;
-                    @PlayerMoveBackwards.started += instance.OnPlayerMoveBackwards;
-                    @PlayerMoveBackwards.performed += instance.OnPlayerMoveBackwards;
-                    @PlayerMoveBackwards.canceled += instance.OnPlayerMoveBackwards;
-                    @PlayerStrafeLeft.started += instance.OnPlayerStrafeLeft;
-                    @PlayerStrafeLeft.performed += instance.OnPlayerStrafeLeft;
-                    @PlayerStrafeLeft.canceled += instance.OnPlayerStrafeLeft;
-                    @PlayerStrafeRight.started += instance.OnPlayerStrafeRight;
-                    @PlayerStrafeRight.performed += instance.OnPlayerStrafeRight;
-                    @PlayerStrafeRight.canceled += instance.OnPlayerStrafeRight;
                     @PlayerHorizontalMovement.started += instance.OnPlayerHorizontalMovement;
                     @PlayerHorizontalMovement.performed += instance.OnPlayerHorizontalMovement;
                     @PlayerHorizontalMovement.canceled += instance.OnPlayerHorizontalMovement;
+                    @PlayerJump.started += instance.OnPlayerJump;
+                    @PlayerJump.performed += instance.OnPlayerJump;
+                    @PlayerJump.canceled += instance.OnPlayerJump;
                 }
             }
         }
@@ -340,11 +256,8 @@ namespace NSLS.Game.Input
         public interface IPlayerActions
         {
             void OnPlayerCameraLook(InputAction.CallbackContext context);
-            void OnPlayerMoveForward(InputAction.CallbackContext context);
-            void OnPlayerMoveBackwards(InputAction.CallbackContext context);
-            void OnPlayerStrafeLeft(InputAction.CallbackContext context);
-            void OnPlayerStrafeRight(InputAction.CallbackContext context);
             void OnPlayerHorizontalMovement(InputAction.CallbackContext context);
+            void OnPlayerJump(InputAction.CallbackContext context);
         }
     }
 }
