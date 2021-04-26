@@ -259,9 +259,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa94a0249449612438ef2e19c91b3e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpHeight: 1.5
-  gravity: -1
+  moveSpeed: 20
+  jumpHeight: 5
+  gravity: 1
   characterController: {fileID: 234242487131175106}
   playerGroundMask:
     serializedVersion: 2

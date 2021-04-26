@@ -16,7 +16,8 @@ namespace NSLS.Game.Input
     private float jumpHeight = 1.5f;
 
     [SerializeField]
-    private float gravity = -1f;
+    private float gravity = 1f;
+    private float Gravity { get { return -gravity * 0.01f; } }
 
     [SerializeField]
     private CharacterController characterController;
@@ -116,7 +117,7 @@ namespace NSLS.Game.Input
 
     void UpdateGravity()
     {
-      verticalVelocity.y += -1;
+      verticalVelocity.y += Gravity;
 
       if (isGrounded && verticalVelocity.y < 0)
       {
@@ -131,11 +132,11 @@ namespace NSLS.Game.Input
       // if (!currentJumpInput) return;
       // if (!isGrounded) return;
 
+      // verticalVelocity.y = Mathf.Sqrt(-2f * jumpHeight * gravity);
       if (isGrounded && currentJumpInput)
       {
-        verticalVelocity.y = Mathf.Sqrt(-2f * jumpHeight * gravity);
+        verticalVelocity.y = Mathf.Sqrt(-2f * jumpHeight * Gravity);
       }
-
       // characterController.Move(Vector3.up * 10);
     }
 
