@@ -43,6 +43,14 @@ namespace NSLS.Game.Input
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""PlayerLeftHandUse"",
+                    ""type"": ""Button"",
+                    ""id"": ""090ebe0e-e9cb-4892-b869-a1c4b19d6cdc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -122,6 +130,17 @@ namespace NSLS.Game.Input
                     ""action"": ""PlayerJump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2928d7ce-f59f-4267-995a-6ad653959944"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayerLeftHandUse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -150,6 +169,7 @@ namespace NSLS.Game.Input
             m_Player_PlayerCameraLook = m_Player.FindAction("PlayerCameraLook", throwIfNotFound: true);
             m_Player_PlayerHorizontalMovement = m_Player.FindAction("PlayerHorizontalMovement", throwIfNotFound: true);
             m_Player_PlayerJump = m_Player.FindAction("PlayerJump", throwIfNotFound: true);
+      m_Player_PlayerLeftHandUse = m_Player.FindAction("PlayerLeftHandUse", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -202,6 +222,7 @@ namespace NSLS.Game.Input
         private readonly InputAction m_Player_PlayerCameraLook;
         private readonly InputAction m_Player_PlayerHorizontalMovement;
         private readonly InputAction m_Player_PlayerJump;
+    private readonly InputAction m_Player_PlayerLeftHandUse;
         public struct PlayerActions
         {
             private @Controls m_Wrapper;
@@ -209,6 +230,7 @@ namespace NSLS.Game.Input
             public InputAction @PlayerCameraLook => m_Wrapper.m_Player_PlayerCameraLook;
             public InputAction @PlayerHorizontalMovement => m_Wrapper.m_Player_PlayerHorizontalMovement;
             public InputAction @PlayerJump => m_Wrapper.m_Player_PlayerJump;
+      public InputAction @PlayerLeftHandUse => m_Wrapper.m_Player_PlayerLeftHandUse;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -227,6 +249,9 @@ namespace NSLS.Game.Input
                     @PlayerJump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerJump;
                     @PlayerJump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerJump;
                     @PlayerJump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerJump;
+          @PlayerLeftHandUse.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerLeftHandUse;
+          @PlayerLeftHandUse.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerLeftHandUse;
+          @PlayerLeftHandUse.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerLeftHandUse;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -240,6 +265,9 @@ namespace NSLS.Game.Input
                     @PlayerJump.started += instance.OnPlayerJump;
                     @PlayerJump.performed += instance.OnPlayerJump;
                     @PlayerJump.canceled += instance.OnPlayerJump;
+          @PlayerLeftHandUse.started += instance.OnPlayerLeftHandUse;
+          @PlayerLeftHandUse.performed += instance.OnPlayerLeftHandUse;
+          @PlayerLeftHandUse.canceled += instance.OnPlayerLeftHandUse;
                 }
             }
         }
@@ -258,6 +286,7 @@ namespace NSLS.Game.Input
             void OnPlayerCameraLook(InputAction.CallbackContext context);
             void OnPlayerHorizontalMovement(InputAction.CallbackContext context);
             void OnPlayerJump(InputAction.CallbackContext context);
+      void OnPlayerLeftHandUse(InputAction.CallbackContext context);
         }
     }
 }

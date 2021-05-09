@@ -81,6 +81,7 @@ namespace NSLS.Game.Player
     private void OnDisable()
     {
       Controls.Disable();
+
       // TODO: сделать менюху на эскейп, в которой курсор будет врубаться
       Cursor.visible = true;
       Cursor.lockState = CursorLockMode.None;
@@ -107,35 +108,6 @@ namespace NSLS.Game.Player
 
       playerTransform.transform.rotation = Quaternion.Euler(0f, cameraRotationAroundY, 0f);
       cameraMountPoint.transform.localRotation = Quaternion.Euler(cameraRotationAroundX, 0f, 0f);
-
-      // cameraMountPoint.transform.Rotate(cameraRotationDeltaAroundX, 0f, 0f);
-      // playerTransform.Rotate(0f, cameraRotationDeltaAroundY, 0f);
-
-
-
-      // cameraRotationAroundX += -input.y * mouseSensitivity.y * deltaTime;
-      // cameraRotationAroundY += input.x * mouseSensitivity.x * deltaTime;
-
-      // cameraRotationAroundX = Mathf.Clamp(cameraRotationAroundX, -90f, 90f);
-
-      // cameraMountPoint.transform.rotation = Quaternion.Euler(cameraRotationAroundX, 0f, 0f);
-      // playerTransform.rotation = Quaternion.Euler(0f, cameraRotationAroundY, 0f)
     }
   }
 }
-/* // Ограничеваем вертикальный поворот ногами и небом и ревёрсим его чтобы было по-человечески
-      var cameraRotationDeltaAroundX = -input.y * mouseSensitivity.y * deltaTime;
-      var cameraRotationDeltaAroundY = input.x * mouseSensitivity.x * deltaTime;
-
-      // cameraMountPoint.transform.Rotate(cameraRotationDeltaAroundX, 0f, 0f);
-      // cameraMountPoint.transform.rotation.x = Mathf.Clamp(cameraMountPoint.transform.rotation.x, -90f, 90f);
-
-
-      cameraRotationAroundX += -input.y * mouseSensitivity.y * deltaTime;
-      cameraRotationAroundY += input.x * mouseSensitivity.x * deltaTime;
-
-      cameraRotationAroundX = Mathf.Clamp(cameraRotationAroundX, -90f, 90f);
-
-      cameraMountPoint.transform.rotation = Quaternion.Euler(cameraRotationAroundX, 0f, 0f);
-      // playerTransform.rotation = Quaternion.Euler(0f, cameraRotationAroundY, 0f);
-      playerTransform.Rotate(0f, cameraRotationDeltaAroundY, 0f); */

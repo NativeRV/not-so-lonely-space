@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MLAPI;
 using UnityEngine.InputSystem;
+using NSLS.Service.UnityService;
 
 namespace NSLS.Game.Input
 {
@@ -10,31 +11,36 @@ namespace NSLS.Game.Input
   {
     [Header("Player stats")]
     [SerializeField]
-    private float moveSpeed = 5;
+    public float moveSpeed = 5;
 
     [SerializeField]
-    private float jumpHeight = 1.5f;
+    public float jumpHeight = 1.5f;
 
     [SerializeField]
-    private float gravity = 1f;
-    private float Gravity { get { return -gravity * 0.01f; } }
+    public float gravity = 1f;
+    public float gravityMultiplier = 0.01f;
+    public float Gravity { get => -gravity * gravityMultiplier; }
 
     [SerializeField]
-    private CharacterController characterController;
+    public CharacterController characterController;
 
     [SerializeField]
-    private LayerMask playerGroundMask;
+    public LayerMask playerGroundMask;
 
     [SerializeField]
-    private Transform playerGroundPoint;
+    public Transform playerGroundPoint;
 
-    private bool isGrounded = false;
-    private bool currentJumpInput;
-    private Vector2 currentHorizontalInput;
-    private Vector3 verticalVelocity = Vector3.zero;
+    public bool isGrounded = false;
+    public bool currentJumpInput;
+    public Vector2 currentHorizontalInput;
+    public Vector3 verticalVelocity = Vector3.zero;
 
-    private Controls controls;
-    private Controls Controls
+    public Movement Movement;
+
+    public IUnityService UnityService;
+
+    public Controls controls;
+    public Controls Controls
     {
       get
       {
@@ -48,7 +54,12 @@ namespace NSLS.Game.Input
 
     public void Start()
     {
-      // enabled = true;
+      Movement = new Movement(new Movement.Params
+      {
+        moveSpeed = this.moveSpeed,
+      });
+
+      UnityService = new UnityService();
 
       Controls.Player.PlayerHorizontalMovement.performed += (ctx) => SetMovement(ctx.ReadValue<Vector2>());
       Controls.Player.PlayerHorizontalMovement.canceled += (ctx) => ResetMovement();
@@ -57,12 +68,12 @@ namespace NSLS.Game.Input
       Controls.Player.PlayerJump.canceled += (ctx) => ResetJumping();
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
       Controls.Enable();
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
       Controls.Disable();
     }
@@ -92,19 +103,14 @@ namespace NSLS.Game.Input
     {
       if (!IsLocalPlayer) return;
 
+      Vector3 horizontalMovement = Movement.CalculateHorizontal(
+        transform.forward,
+        transform.right,
+        currentHorizontalInput,
+        UnityService.GetDeltaTime()
+      );
 
-      Vector3 sideAxis = transform.right;
-      Vector3 forwardAxis = transform.forward;
-
-      sideAxis.y = 0f;
-      forwardAxis.y = 0f;
-
-      Vector3 movement = sideAxis.normalized * currentHorizontalInput.x +
-                        forwardAxis.normalized * currentHorizontalInput.y;
-
-      var horizontalVelocity = movement * moveSpeed * Time.deltaTime;
-
-      characterController.Move(horizontalVelocity);
+      characterController.Move(horizontalMovement);
       characterController.Move(verticalVelocity);
     }
 
@@ -112,14 +118,13 @@ namespace NSLS.Game.Input
     {
       // Чекаем троганье земли
       isGrounded = Physics.CheckSphere(playerGroundPoint.position, 0.1f, playerGroundMask);
-      // isGrounded = Physics.Raycast(playerGroundPoint.position, Vector3.down, 3f, playerGroundMask);
     }
 
     void UpdateGravity()
     {
       verticalVelocity.y += Gravity;
 
-      if (isGrounded && verticalVelocity.y < 0)
+      if (isGrounded && verticalVelocity.y <= 0)
       {
         // Оставляем немного скорости, чтобы убедиться в том что игрок трогает землю
         verticalVelocity.y = -0.1f;
@@ -129,15 +134,10 @@ namespace NSLS.Game.Input
 
     void UpdateJump()
     {
-      // if (!currentJumpInput) return;
-      // if (!isGrounded) return;
+      if (!currentJumpInput) return;
+      if (!isGrounded) return;
 
-      // verticalVelocity.y = Mathf.Sqrt(-2f * jumpHeight * gravity);
-      if (isGrounded && currentJumpInput)
-      {
-        verticalVelocity.y = Mathf.Sqrt(-2f * jumpHeight * Gravity);
-      }
-      // characterController.Move(Vector3.up * 10);
+      verticalVelocity.y = Mathf.Sqrt(-2f * jumpHeight * Gravity);
     }
 
     void Update()
