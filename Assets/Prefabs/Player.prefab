@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 5481682537549666447}
   - component: {fileID: 4808277571280128719}
   - component: {fileID: 1382917927498559577}
+  - component: {fileID: 3778441831655784806}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -262,11 +263,16 @@ MonoBehaviour:
   moveSpeed: 20
   jumpHeight: 5
   gravity: 1
+  gravityMultiplier: 0.01
   characterController: {fileID: 234242487131175106}
   playerGroundMask:
     serializedVersion: 2
     m_Bits: 4294967295
   playerGroundPoint: {fileID: 1122180699752732797}
+  isGrounded: 0
+  currentJumpInput: 0
+  currentHorizontalInput: {x: 0, y: 0}
+  verticalVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &1382917927498559577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +289,20 @@ MonoBehaviour:
   cameraMountPoint: {fileID: 8902353436908813076}
   playerTransform: {fileID: 3940825635195478822}
   characterController: {fileID: 234242487131175106}
+--- !u!114 &3778441831655784806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7684693781925140913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bebf29147e40d794d8981079de1debd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 5718026676817658424, guid: 45aec7d8a3a45014a94ca895140c3c70, type: 3}
+  cameraMountPoint: {fileID: 8902353436908813076}
 --- !u!1 &8902353436908813076
 GameObject:
   m_ObjectHideFlags: 0

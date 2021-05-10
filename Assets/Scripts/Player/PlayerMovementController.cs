@@ -147,8 +147,6 @@ namespace NSLS.Game.Input
       UpdateGravity();
 
       UpdateMovement();
-
-      Debug.Log(new { isGrounded, currentJumpInput, verticalVelocity, gravityDelta = 0.5f * gravity * Mathf.Pow(Time.deltaTime, 2) });
     }
   }
 }
