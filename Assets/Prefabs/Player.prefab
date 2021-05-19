@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 4808277571280128719}
   - component: {fileID: 1382917927498559577}
   - component: {fileID: 3778441831655784806}
+  - component: {fileID: 7895654525658416998}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -179,7 +180,7 @@ BoxCollider:
   m_GameObject: {fileID: 7684693781925140913}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 4, y: 4, z: 0}
   m_Center: {x: 0, y: 3, z: 0}
@@ -303,6 +304,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 5718026676817658424, guid: 45aec7d8a3a45014a94ca895140c3c70, type: 3}
   cameraMountPoint: {fileID: 8902353436908813076}
+--- !u!114 &7895654525658416998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7684693781925140913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f0987e0242fb1849856bb782f45f503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8902353436908813076
 GameObject:
   m_ObjectHideFlags: 0
