@@ -17,12 +17,10 @@ namespace NSLS.Game.Input
     public float jumpHeight = 1.5f;
 
     [SerializeField]
+    // FIXME: get gravity from GravityAttractor
     public float gravity = 1f;
     public float gravityMultiplier = 0.01f;
     public float Gravity { get => -gravity * gravityMultiplier; }
-
-    [SerializeField]
-    public CharacterController characterController;
 
     [SerializeField]
     public LayerMask playerGroundMask;
@@ -30,15 +28,11 @@ namespace NSLS.Game.Input
     [SerializeField]
     public Transform playerGroundPoint;
 
-    public bool isGrounded = false;
-    public bool currentJumpInput;
-    public Vector2 currentHorizontalInput;
-    public Vector3 verticalVelocity = Vector3.zero;
+    [SerializeField]
+    new private Rigidbody rigidbody;
 
     public Movement Movement;
-
     public IUnityService UnityService;
-
     public Controls controls;
     public Controls Controls
     {
@@ -52,8 +46,15 @@ namespace NSLS.Game.Input
       }
     }
 
+    public bool currentJumpInput;
+    public Vector2 currentHorizontalInput;
+
+    public bool isGrounded = false;
+
     public void Start()
     {
+      // Initialize deps, sub to input events
+
       Movement = new Movement(new Movement.Params
       {
         moveSpeed = this.moveSpeed,
@@ -110,26 +111,14 @@ namespace NSLS.Game.Input
         UnityService.GetDeltaTime()
       );
 
-      characterController.Move(horizontalMovement);
-      characterController.Move(verticalVelocity);
+      rigidbody.AddForce(horizontalMovement, ForceMode.VelocityChange);
     }
 
     void UpdateGrounded()
     {
       // Чекаем троганье земли
       isGrounded = Physics.CheckSphere(playerGroundPoint.position, 0.1f, playerGroundMask);
-    }
-
-    void UpdateGravity()
-    {
-      verticalVelocity.y += Gravity;
-
-      if (isGrounded && verticalVelocity.y <= 0)
-      {
-        // Оставляем немного скорости, чтобы убедиться в том что игрок трогает землю
-        verticalVelocity.y = -0.1f;
-      }
-
+      Debug.Log(new { isGrounded });
     }
 
     void UpdateJump()
@@ -137,16 +126,31 @@ namespace NSLS.Game.Input
       if (!currentJumpInput) return;
       if (!isGrounded) return;
 
-      verticalVelocity.y = Mathf.Sqrt(-2f * jumpHeight * Gravity);
+      var jumpMovement = Vector3.up * Mathf.Sqrt(-2f * jumpHeight * Physics.gravity.y);
+
+      rigidbody.AddForce(jumpMovement, ForceMode.VelocityChange);
     }
 
     void Update()
     {
       UpdateGrounded();
       UpdateJump();
-      UpdateGravity();
+      // UpdateGravity();
 
-      UpdateMovement();
+      // UpdateMovement();
+    }
+
+    void FixedUpdate()
+    {
+      var movement = rigidbody.position + Movement.CalculateHorizontal(
+        transform.forward,
+        transform.right,
+        currentHorizontalInput,
+        Time.fixedDeltaTime
+      );
+
+      rigidbody.MovePosition(movement);
     }
   }
+
 }
