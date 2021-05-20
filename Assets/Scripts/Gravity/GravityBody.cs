@@ -4,9 +4,10 @@ using MLAPI;
 [RequireComponent(typeof(Rigidbody))]
 public class GravityBody : NetworkBehaviour
 {
+  // [SerializeField]
+  private GravityAttractor planet;
 
-  GravityAttractor planet;
-  new Rigidbody rigidbody;
+  new private Rigidbody rigidbody;
 
   void Awake()
   {

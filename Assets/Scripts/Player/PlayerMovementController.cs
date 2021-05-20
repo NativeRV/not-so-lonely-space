@@ -126,7 +126,7 @@ namespace NSLS.Game.Input
       if (!currentJumpInput) return;
       if (!isGrounded) return;
 
-      var jumpMovement = Vector3.up * Mathf.Sqrt(-2f * jumpHeight * Physics.gravity.y);
+      var jumpMovement = transform.up * Mathf.Sqrt(-2f * jumpHeight * Physics.gravity.y);
 
       rigidbody.AddForce(jumpMovement, ForceMode.VelocityChange);
     }

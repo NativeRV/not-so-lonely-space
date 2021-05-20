@@ -15,6 +15,8 @@ public class PlayerHandsController : NetworkBehaviour
 
   public GameObject projectile;
   public GameObject cameraMountPoint;
+  public GameObject rightHandPoint;
+  public GameObject leftHandPoint;
 
   public IUnityService UnityService;
 
@@ -96,14 +98,14 @@ public class PlayerHandsController : NetworkBehaviour
   {
     var projectileObject = Instantiate(
       projectile,
-      transform.position,
+      rightHandPoint.transform.position,
       Quaternion.identity
     );
     projectileObject.GetComponent<NetworkObject>().Spawn();
 
     var projectileBody = projectileObject.GetComponent<Rigidbody>();
-    projectileBody.position += new Vector3(0, 3, 0);
+    // projectileBody.position += new Vector3(0, 3, 0);
 
-    projectileBody.velocity = (transform.forward + cameraMountPoint.transform.forward) * 20;
+    projectileBody.velocity = (cameraMountPoint.transform.forward) * 50;
   }
 }

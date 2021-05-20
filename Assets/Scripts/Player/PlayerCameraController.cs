@@ -74,6 +74,7 @@ namespace NSLS.Game.Player
       Controls.Enable();
 
       // TODO: сделать менюху на эскейп, в которой курсор будет врубаться
+      // TODO: move this to UnityService
       Cursor.visible = false;
       Cursor.lockState = CursorLockMode.Locked;
     }
@@ -98,16 +99,15 @@ namespace NSLS.Game.Player
       // чтобы для любого FPS игра работала одинаково
       float deltaTime = Time.smoothDeltaTime;
 
-      // Ограничеваем вертикальный поворот ногами и небом и ревёрсим его чтобы было по-человечески
-      var cameraRotationDeltaAroundX = -input.y * mouseSensitivity.y * deltaTime;
+      // Ограничеваем вертикальный поворот ногами и небом и инвёртим его чтобы было по-человечески
+      var cameraRotationDeltaAroundX = input.y * mouseSensitivity.y * deltaTime;
       var cameraRotationDeltaAroundY = input.x * mouseSensitivity.x * deltaTime;
 
-      cameraRotationAroundX += -input.y * mouseSensitivity.y * deltaTime;
-      cameraRotationAroundY += input.x * mouseSensitivity.x * deltaTime;
+      cameraRotationAroundX += cameraRotationDeltaAroundX;
       cameraRotationAroundX = Mathf.Clamp(cameraRotationAroundX, -90f, 90f);
 
-      playerTransform.transform.rotation = Quaternion.Euler(0f, cameraRotationAroundY, 0f);
-      cameraMountPoint.transform.localRotation = Quaternion.Euler(cameraRotationAroundX, 0f, 0f);
+      playerTransform.transform.Rotate(Vector3.up * cameraRotationDeltaAroundY);
+      cameraMountPoint.transform.localEulerAngles = Vector3.left * cameraRotationAroundX;
     }
   }
 }
