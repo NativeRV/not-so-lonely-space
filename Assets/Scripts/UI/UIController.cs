@@ -7,6 +7,8 @@ namespace NSLS.Game.UI
 {
   public class UIController : MonoBehaviour
   {
+    public Transform spawnAnchor;
+
     void OnGUI()
     {
       GUILayout.BeginArea(new Rect(10, 10, 300, 300));
@@ -24,14 +26,16 @@ namespace NSLS.Game.UI
       GUILayout.EndArea();
     }
 
-    static void StartButtons()
+    void StartButtons()
     {
-      if (GUILayout.Button("Host")) NetworkManager.Singleton.StartHost();
+      // FIXME: move logic from the UI, leave only events
+
+      if (GUILayout.Button("Host")) NetworkManager.Singleton.StartHost(spawnAnchor.position, spawnAnchor.rotation);
       if (GUILayout.Button("Client")) NetworkManager.Singleton.StartClient();
       if (GUILayout.Button("Server")) NetworkManager.Singleton.StartServer();
     }
 
-    static void StopButtons()
+    void StopButtons()
     {
       var mode = NetworkManager.Singleton.IsHost ?
           "Host" : NetworkManager.Singleton.IsServer ? "Server" : "Client";
@@ -41,7 +45,7 @@ namespace NSLS.Game.UI
       // FIXME: don't do UI if only running server
 
     }
-    static void StatusLabels()
+    void StatusLabels()
     {
       var mode = NetworkManager.Singleton.IsHost ?
           "Host" : NetworkManager.Singleton.IsServer ? "Server" : "Client";
