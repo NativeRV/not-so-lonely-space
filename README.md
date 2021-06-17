@@ -16,14 +16,14 @@ git clone https://github.com/NativeRV/not-so-lonely-space
 ```
 
 ## Roadmap
-- [ ] Add player controls
-- [ ] Add planets (spheres) with gravity towards center
+- [x] Add player controls
+- [x] Add planets (spheres) with gravity towards center
 - [ ] Add procedural terrain to planets
 - [ ] Add portal wormholes between planets
 - [ ] Add structures to planets
 - [ ] Add NPC
 - [ ] Combine above to generate paths from starting platet to planet with rocket to escape and win the game
-- [ ] Add multiplayer
+- [x] Add multiplayer
 - [ ] Add multiple starting platens for all players, and shared planets to compete on the way to finish
 - [ ] Add way to kill eachother
 
@@ -33,6 +33,6 @@ git clone https://github.com/NativeRV/not-so-lonely-space
 
 ## Todo
 - Add GitHub Actions CI/CD
-- [ ] Tests
+- [x] Tests
 - [ ] Autoformatting
 - [ ] Linting
