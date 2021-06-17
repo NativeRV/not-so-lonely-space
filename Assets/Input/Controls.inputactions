@@ -36,6 +36,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "PlayerRightHandUse",
+                    "type": "Button",
+                    "id": "ea9b4f26-e8b7-4892-9baa-14c5aeba8313",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -119,11 +127,22 @@
                 {
                     "name": "",
                     "id": "2928d7ce-f59f-4267-995a-6ad653959944",
-                    "path": "",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
                     "action": "PlayerLeftHandUse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "55047690-67b2-43b1-967f-1eca99000bc3",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "PlayerRightHandUse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
