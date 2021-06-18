@@ -17,6 +17,8 @@ public class PlayerHandsController : NetworkBehaviour
   public GameObject cameraMountPoint;
   public GameObject rightHandPoint;
   public GameObject leftHandPoint;
+  
+  public Animator handsAnimator;
 
   public IUnityService UnityService;
 
@@ -68,6 +70,7 @@ public class PlayerHandsController : NetworkBehaviour
   {
     isCurrentlyUsingRightHand = true;
     isWantsToShoot = true;
+    GameObject.Find("Hands").GetComponent<Animator>().SetTrigger("Attack");
   }
 
   private void UnsetUsingRightHand()

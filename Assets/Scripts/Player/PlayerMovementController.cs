@@ -118,7 +118,7 @@ namespace NSLS.Game.Input
     {
       // Чекаем троганье земли
       isGrounded = Physics.CheckSphere(playerGroundPoint.position, 0.1f, playerGroundMask);
-      Debug.Log(new { isGrounded });
+      // Debug.Log(new { isGrounded });
     }
 
     void UpdateJump()

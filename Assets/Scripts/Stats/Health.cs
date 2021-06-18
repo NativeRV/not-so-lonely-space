@@ -18,6 +18,6 @@ public class Health : MonoBehaviour
 
   public void TakeDamage(float count)
   {
-    Debug.Log($"Took {count} damage");
+    // Debug.Log($"Took {count} damage");
   }
 }

@@ -27,7 +27,7 @@ public class Projectile : MonoBehaviour
     }
     else
     {
-      Debug.Log($"Can't find health! Collided with: {other.gameObject.name}");
+      // Debug.Log($"Can't find health! Collided with: {other.gameObject.name}");
     }
   }
 }
