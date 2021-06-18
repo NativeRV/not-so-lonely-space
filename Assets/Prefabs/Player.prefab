@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: {x: 10, y: 10}
-  cameraMountPoint: {fileID: 8902353436908813076}
+  cameraMountPoint2: {fileID: 8902353436908813076}
   playerTransform: {fileID: 3940825635195478822}
   characterController: {fileID: 234242487131175106}
 --- !u!114 &3778441831655784806

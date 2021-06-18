@@ -21,7 +21,8 @@ namespace NSLS.Game.Player
     private Vector2 mouseSensitivity = new Vector2(4f, 4f);
 
     [SerializeField]
-    private GameObject cameraMountPoint = null;
+    // TODO: fix unassigned without `2`
+    private GameObject cameraMountPoint2 = null;
 
     [Header("Player root GameObject")]
     [SerializeField]
@@ -56,9 +57,9 @@ namespace NSLS.Game.Player
     {
       if (!IsLocalPlayer) return;
 
-      MainCameraTransform.parent = cameraMountPoint.transform;  //Make the camera a child of the mount point
-      MainCameraTransform.position = cameraMountPoint.transform.position;  //Set position/rotation same as the mount point
-      MainCameraTransform.rotation = cameraMountPoint.transform.rotation;
+      MainCameraTransform.parent = cameraMountPoint2.transform;  //Make the camera a child of the mount point
+      MainCameraTransform.position = cameraMountPoint2.transform.position;  //Set position/rotation same as the mount point
+      MainCameraTransform.rotation = cameraMountPoint2.transform.rotation;
 
       // Enable updates for PlayerCameraController
       enabled = true;
@@ -107,7 +108,7 @@ namespace NSLS.Game.Player
       cameraRotationAroundX = Mathf.Clamp(cameraRotationAroundX, -90f, 90f);
 
       playerTransform.transform.Rotate(Vector3.up * cameraRotationDeltaAroundY);
-      cameraMountPoint.transform.localEulerAngles = Vector3.left * cameraRotationAroundX;
+      cameraMountPoint2.transform.localEulerAngles = Vector3.left * cameraRotationAroundX;
     }
   }
 }

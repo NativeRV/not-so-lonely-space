@@ -405,7 +405,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1249,7 +1249,7 @@ MonoBehaviour:
     NetworkPrefabs:
     - Prefab: {fileID: 7684693781925140913, guid: b39c54d6187cb51458f2a21fd0187ad4, type: 3}
       PlayerPrefab: 1
-    - Prefab: {fileID: 5718026676817658424, guid: 45aec7d8a3a45014a94ca895140c3c70, type: 3}
+    - Prefab: {fileID: 5718026676817658424, guid: 79c9c2f0fdb5cc44d8236028060036eb, type: 3}
       PlayerPrefab: 0
     PlayerPrefabHash:
       id: 0
@@ -1459,11 +1459,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6905963161798625202, guid: 858f4062e009ece41813f1a0309a89ae, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 526.2137
+      value: 913.8596
       objectReference: {fileID: 0}
     - target: {fileID: 6905963161798625202, guid: 858f4062e009ece41813f1a0309a89ae, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 328.5283
+      value: 699.1613
       objectReference: {fileID: 0}
     - target: {fileID: 6905963161798625202, guid: 858f4062e009ece41813f1a0309a89ae, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1495,11 +1495,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6905963161798625202, guid: 858f4062e009ece41813f1a0309a89ae, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0000019073
+      value: 0.000022888
       objectReference: {fileID: 0}
     - target: {fileID: 6905963161798625202, guid: 858f4062e009ece41813f1a0309a89ae, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -16.516
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 6905963161798625202, guid: 858f4062e009ece41813f1a0309a89ae, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
